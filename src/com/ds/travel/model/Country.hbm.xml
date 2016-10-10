@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 7, 2016 12:53:26 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.ds.travel.model.Country" table="country" catalog="travel" optimistic-lock="version">
+        <id name="code" type="string">
+            <column name="Code" length="3" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="Name" length="52" not-null="true" />
+        </property>
+        <property name="continent" type="string">
+            <column name="Continent" length="13" not-null="true" />
+        </property>
+        <property name="region" type="string">
+            <column name="Region" length="26" not-null="true" />
+        </property>
+        <property name="surfaceArea" type="float">
+            <column name="SurfaceArea" precision="10" not-null="true" />
+        </property>
+        <property name="indepYear" type="java.lang.Short">
+            <column name="IndepYear" />
+        </property>
+        <property name="population" type="int">
+            <column name="Population" not-null="true" />
+        </property>
+        <property name="lifeExpectancy" type="java.lang.Float">
+            <column name="LifeExpectancy" precision="3" scale="1" />
+        </property>
+        <property name="gnp" type="java.lang.Float">
+            <column name="GNP" precision="10" />
+        </property>
+        <property name="gnpold" type="java.lang.Float">
+            <column name="GNPOld" precision="10" />
+        </property>
+        <property name="localName" type="string">
+            <column name="LocalName" length="45" not-null="true" />
+        </property>
+        <property name="governmentForm" type="string">
+            <column name="GovernmentForm" length="45" not-null="true" />
+        </property>
+        <property name="headOfState" type="string">
+            <column name="HeadOfState" length="60" />
+        </property>
+        <property name="capital" type="java.lang.Integer">
+            <column name="Capital" />
+        </property>
+        <property name="code2" type="string">
+            <column name="Code2" length="2" not-null="true" />
+        </property>
+        <set name="cities" table="city" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CountryCode" length="3" not-null="true" />
+            </key>
+            <one-to-many class="com.ds.travel.model.City" />
+        </set>
+        <set name="countryUsers" table="country_user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CountryCode" length="3" not-null="true" />
+            </key>
+            <one-to-many class="com.ds.travel.model.CountryUser" />
+        </set>
+    </class>
+</hibernate-mapping>

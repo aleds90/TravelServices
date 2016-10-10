@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="SessionFactory">
+        <mapping resource="com/ds/travel/model/User.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/TravelTag.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Target.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Tag.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Stage.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Profile.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Photo.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Country.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/City.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Category.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Address.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Travel.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/Message.hbm.xml"></mapping>
+        <mapping resource="com/ds/travel/model/CountryUser.hbm.xml"></mapping>
+    </session-factory>
+</hibernate-configuration>

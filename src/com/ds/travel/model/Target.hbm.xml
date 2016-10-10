@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 7, 2016 12:53:26 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.ds.travel.model.Target" table="target" catalog="travel" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="miniumBudget" type="java.lang.Integer">
+            <column name="minium_budget" />
+        </property>
+        <property name="maxiumBudget" type="java.lang.Integer">
+            <column name="maxium_budget" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="45" />
+        </property>
+        <set name="travels" table="travel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="target" />
+            </key>
+            <one-to-many class="com.ds.travel.model.Travel" />
+        </set>
+    </class>
+</hibernate-mapping>

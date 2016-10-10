@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 7, 2016 12:53:26 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.ds.travel.model.Stage" table="stage" catalog="travel" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="city" class="com.ds.travel.model.City" fetch="select">
+            <column name="city" />
+        </many-to-one>
+        <many-to-one name="travel" class="com.ds.travel.model.Travel" fetch="select">
+            <column name="travel" />
+        </many-to-one>
+        <property name="startDate" type="timestamp">
+            <column name="start_date" length="19" />
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="end_date" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

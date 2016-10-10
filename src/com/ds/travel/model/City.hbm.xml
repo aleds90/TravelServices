@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 7, 2016 12:53:26 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.ds.travel.model.City" table="city" catalog="travel" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="country" class="com.ds.travel.model.Country" fetch="select" lazy="false">
+            <column name="CountryCode" length="3" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" length="35" not-null="true" />
+        </property>
+        <property name="district" type="string">
+            <column name="District" length="20" not-null="true" />
+        </property>
+        <property name="population" type="int">
+            <column name="Population" not-null="true" />
+        </property>
+        <set name="stages" table="stage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="city" />
+            </key>
+            <one-to-many class="com.ds.travel.model.Stage" />
+        </set>
+        <set name="addresses" table="address" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="city" />
+            </key>
+            <one-to-many class="com.ds.travel.model.Address" />
+        </set>
+    </class>
+</hibernate-mapping>

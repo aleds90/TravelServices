@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 7, 2016 12:53:26 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.ds.travel.model.Address" table="address" catalog="travel" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="city" class="com.ds.travel.model.City" fetch="select" lazy="false">
+            <column name="city" />
+        </many-to-one>
+        <property name="street" type="string">
+            <column name="street" length="45" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="45" />
+        </property>
+        <property name="postalCode" type="string">
+            <column name="postal_code" length="45" />
+        </property>
+        <set name="profiles" table="profile" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="address" />
+            </key>
+            <one-to-many class="com.ds.travel.model.Profile" />
+        </set>
+    </class>
+</hibernate-mapping>

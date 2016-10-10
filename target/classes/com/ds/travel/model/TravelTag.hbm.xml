@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 7, 2016 12:53:26 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.ds.travel.model.TravelTag" table="travel_tag" catalog="travel" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="tag" class="com.ds.travel.model.Tag" fetch="select">
+            <column name="tag" />
+        </many-to-one>
+        <many-to-one name="travel" class="com.ds.travel.model.Travel" fetch="select">
+            <column name="travel" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

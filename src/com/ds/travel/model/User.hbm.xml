@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 7, 2016 12:53:26 PM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="com.ds.travel.model.User" table="user" catalog="travel" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="profile" class="com.ds.travel.model.Profile" fetch="select" lazy="false">
+            <column name="profile" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="username" length="45" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" />
+        </property>
+        <property name="createdAt" type="timestamp">
+            <column name="created_at" length="19" />
+        </property>
+        <property name="updatedAt" type="timestamp">
+            <column name="updated_at" length="19" />
+        </property>
+        <set name="travels" table="travel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="organizer" />
+            </key>
+            <one-to-many class="com.ds.travel.model.Travel" />
+        </set>
+        <set name="countryUsers" table="country_user" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user" not-null="true" />
+            </key>
+            <one-to-many class="com.ds.travel.model.CountryUser" />
+        </set>
+        <set name="messages" table="message" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user" />
+            </key>
+            <one-to-many class="com.ds.travel.model.Message" />
+        </set>
+    </class>
+</hibernate-mapping>
