@@ -27,7 +27,7 @@ public class UserController {
 		    public ResponseEntity<List<User>> listAllUsers() {
 		        List<User> users = userDAO.getAll();
 		        if(users.isEmpty()){
-		            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+		            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
 		        }
 		        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 		    }

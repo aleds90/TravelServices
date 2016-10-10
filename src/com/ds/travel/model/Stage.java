@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Stage implements java.io.Serializable {
 
 	private Integer id;
-	@JsonIgnore private City city;
-	@JsonIgnore private Travel travel;
+	private City city;
+	private Travel travel;
 	private Date startDate;
 	private Date endDate;
 

@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="city" class="com.ds.travel.model.City" fetch="select">
+        <many-to-one name="city" class="com.ds.travel.model.City" fetch="select" lazy="false">
             <column name="city" />
         </many-to-one>
-        <many-to-one name="travel" class="com.ds.travel.model.Travel" fetch="select">
+        <many-to-one name="travel" class="com.ds.travel.model.Travel" fetch="select" lazy="false">
             <column name="travel" />
         </many-to-one>
         <property name="startDate" type="timestamp">

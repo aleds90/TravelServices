@@ -65,21 +65,33 @@ public class TravelDAOImpl implements TravelDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Integer> getTravelsIDByProperties(String budget, String place, String category) {
+	public List<Travel> getTravelsIDByProperties(String budget, String place, String category) {
 		Session session = this.sessionFactory.getCurrentSession();
-		String queryString = null;
-		if(!category.equals("All")){
-		queryString = "SELECT DISTINCT travel.id FROM travel left join stage on travel.id = stage.travel left join city on stage.city = city.id"
-				+ " left join country on city.CountryCode = country.Code left join target on target.id = travel.target left join category on category.id = travel.category "
-				+ "where (city.name like '"+place+"%' or country.Name like '"+place+"%' ) AND (target.maxium_budget < "+budget+" ) AND (category.slug='"+category+"')";
-		}else{
-		queryString = "SELECT DISTINCT travel.id FROM travel left join stage on travel.id = stage.travel left join city on stage.city = city.id"
-				+ " left join country on city.CountryCode = country.Code left join target on target.id = travel.target left join category on category.id = travel.category "
-				+ "where (city.name like '"+place+"%' or country.Name like '"+place+"%' ) AND (target.maxium_budget < "+budget+" )";
-		}
-		Query query = session.createSQLQuery(queryString);
+		String hql = "select distinct travel from Travel as travel inner join travel.stages as stage "
+				+ "where (stage.city.name like '"+place+"%' or stage.city.country.name like '"+place+"%' "
+						+ "or stage.city.country.region like '%"+place+"%')"
+							+ " and (travel.target.maxiumBudget < "+budget+") "
+								+ "and (travel.category.slug like '%"+category+"%')";
+		Query query = session.createQuery(hql);
+		return (List<Travel>) query.list();
+	}
 
-		return (List<Integer>) query.list();
+
+	@Override
+	public List<Travel> getTravelsByUser(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("FROM Travel as travel WHERE travel.user.id ='"+id+"'");
+		return (List<Travel>) query.list();
 	}
 
 }
+
+//if(!category.equals("All")){
+//	queryString = "SELECT * FROM travel WHERE travel.id IN (SELECT distinct travel.id FROM travel left join stage on travel.id = stage.travel left join city on stage.city = city.id"
+//			+ " left join country on city.CountryCode = country.Code left join target on target.id = travel.target left join category on category.id = travel.category "
+//			+ "where (city.name like '"+place+"%' or country.Name like '"+place+"%' ) AND (target.maxium_budget < "+budget+" ) AND (category.slug='"+category+"'))";
+//	}else{
+//	queryString = "SELECT * FROM travel WHERE travel.id IN (SELECT distinct travel.id FROM travel left join stage on travel.id = stage.travel left join city on stage.city = city.id"
+//			+ " left join country on city.CountryCode = country.Code left join target on target.id = travel.target left join category on category.id = travel.category "
+//			+ "where (city.name like '"+place+"%' or country.Name like '"+place+"%' ) AND (target.maxium_budget < "+budget+" ))";
+//	}
