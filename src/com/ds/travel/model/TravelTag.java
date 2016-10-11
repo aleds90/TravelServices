@@ -10,7 +10,7 @@ public class TravelTag implements java.io.Serializable {
 
 	private int id;
 	private Tag tag;
-	@JsonIgnore private Travel travel;
+	private Travel travel;
 
 	public TravelTag() {
 	}

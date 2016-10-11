@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="tag" class="com.ds.travel.model.Tag" fetch="select">
+        <many-to-one name="tag" class="com.ds.travel.model.Tag" fetch="select" lazy="false">
             <column name="tag" />
         </many-to-one>
-        <many-to-one name="travel" class="com.ds.travel.model.Travel" fetch="select">
+        <many-to-one name="travel" class="com.ds.travel.model.Travel" fetch="select" lazy="false">
             <column name="travel" />
         </many-to-one>
     </class>

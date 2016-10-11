@@ -86,12 +86,3 @@ public class TravelDAOImpl implements TravelDAO {
 
 }
 
-//if(!category.equals("All")){
-//	queryString = "SELECT * FROM travel WHERE travel.id IN (SELECT distinct travel.id FROM travel left join stage on travel.id = stage.travel left join city on stage.city = city.id"
-//			+ " left join country on city.CountryCode = country.Code left join target on target.id = travel.target left join category on category.id = travel.category "
-//			+ "where (city.name like '"+place+"%' or country.Name like '"+place+"%' ) AND (target.maxium_budget < "+budget+" ) AND (category.slug='"+category+"'))";
-//	}else{
-//	queryString = "SELECT * FROM travel WHERE travel.id IN (SELECT distinct travel.id FROM travel left join stage on travel.id = stage.travel left join city on stage.city = city.id"
-//			+ " left join country on city.CountryCode = country.Code left join target on target.id = travel.target left join category on category.id = travel.category "
-//			+ "where (city.name like '"+place+"%' or country.Name like '"+place+"%' ) AND (target.maxium_budget < "+budget+" ))";
-//	}
