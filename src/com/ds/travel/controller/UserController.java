@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.ds.travel.dao.UserDAO;
 import com.ds.travel.model.User;
 
+
 @RestController
 public class UserController {
 	
@@ -23,7 +24,7 @@ public class UserController {
 	private UserDAO userDAO;
 		
 		 //------------------- Retrieve All User --------------------------------------------------------
-		 @RequestMapping(value = "/user/", method = RequestMethod.GET)
+		 @RequestMapping(value = "/api/user/", method = RequestMethod.GET)
 		    public ResponseEntity<List<User>> listAllUsers() {
 		        List<User> users = userDAO.getAll();
 		        if(users.isEmpty()){

@@ -51,4 +51,12 @@ public class CityDAOImpl implements CityDAO{
 		return (City) query.uniqueResult();
 	}
 
+	@Override
+	public List<City> getByCountry(String code) {
+		Session session = this.sessionFactory.getCurrentSession();
+		Query query = session.createQuery("FROM City WHERE country.code = '"+code+"'");
+		return (List<City>) query.list();
+	}
+
+
 }

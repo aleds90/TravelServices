@@ -10,6 +10,6 @@ public interface CityDAO {
 	 public void update( City city);
 	 public List< City> getAll();
 	 public  City getById(int id);
-
-
+	 public List<City> getByCountry(String code);
+	 
 }
