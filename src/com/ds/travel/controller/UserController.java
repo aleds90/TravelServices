@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.ds.travel.dao.UserDAO;
 import com.ds.travel.model.User;
+import com.ds.travel.security.CustomAuthenticationProvider;
 
 
 @RestController
@@ -26,6 +29,10 @@ public class UserController {
 		 //------------------- Retrieve All User --------------------------------------------------------
 		 @RequestMapping(value = "/api/user/", method = RequestMethod.GET)
 		    public ResponseEntity<List<User>> listAllUsers() {
+			 	Authentication a = SecurityContextHolder.getContext().getAuthentication();
+			 	System.out.println(a.getName());
+			 	System.out.println(a.getPrincipal().toString());
+			 	
 		        List<User> users = userDAO.getAll();
 		        if(users.isEmpty()){
 		            return new ResponseEntity<List<User>>(HttpStatus.NO_CONTENT);
@@ -37,6 +44,8 @@ public class UserController {
 	    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	    public ResponseEntity<User> getUser(@PathVariable("id") int id) {
 	        System.out.println("Fetching User with id " + id);
+	    	Authentication a = SecurityContextHolder.getContext().getAuthentication();
+		 	System.out.println(a.getName());
 	        User user = userDAO.getById(id);
 	        if (user == null) {
 	            System.out.println("User with id " + id + " not found");
